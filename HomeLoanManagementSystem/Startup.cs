@@ -8,6 +8,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HomeLoanManagementSystem.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Configuration;
 
 namespace HomeLoanManagementSystem
 {
@@ -24,6 +27,8 @@ namespace HomeLoanManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
