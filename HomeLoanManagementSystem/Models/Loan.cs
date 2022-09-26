@@ -7,6 +7,7 @@ namespace HomeLoanManagementSystem.Models
     public class Loan
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int LoanNo { get; set; }
         [ForeignKey("application")]
         public int ReqId { get; set; }

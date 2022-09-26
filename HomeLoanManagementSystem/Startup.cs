@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using HomeLoanManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
+using HomeLoanManagementSystem.Repository.UserRepo;
 
 namespace HomeLoanManagementSystem
 {
@@ -27,6 +28,7 @@ namespace HomeLoanManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
         }

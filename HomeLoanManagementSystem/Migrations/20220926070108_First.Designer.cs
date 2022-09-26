@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HomeLoanManagementSystem.Migrations
 {
     [DbContext(typeof(CodeFirstContext))]
-    [Migration("20220922115916_Added FK")]
-    partial class AddedFK
+    [Migration("20220926070108_First")]
+    partial class First
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,9 +24,7 @@ namespace HomeLoanManagementSystem.Migrations
             modelBuilder.Entity("HomeLoanManagementSystem.Models.Admin", b =>
                 {
                     b.Property<int>("AdminId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -40,9 +38,7 @@ namespace HomeLoanManagementSystem.Migrations
             modelBuilder.Entity("HomeLoanManagementSystem.Models.Application", b =>
                 {
                     b.Property<int>("ApplicationId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<long>("AadharNo")
                         .HasColumnType("bigint");
@@ -101,9 +97,7 @@ namespace HomeLoanManagementSystem.Migrations
             modelBuilder.Entity("HomeLoanManagementSystem.Models.FAQ", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Answer")
                         .IsRequired()
@@ -121,9 +115,7 @@ namespace HomeLoanManagementSystem.Migrations
             modelBuilder.Entity("HomeLoanManagementSystem.Models.Loan", b =>
                 {
                     b.Property<int>("LoanNo")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<decimal>("ApprovedAmount")
                         .HasColumnType("Decimal(10,6)");
@@ -150,9 +142,7 @@ namespace HomeLoanManagementSystem.Migrations
             modelBuilder.Entity("HomeLoanManagementSystem.Models.User", b =>
                 {
                     b.Property<long>("Mobile")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Address")
                         .IsRequired()
@@ -168,6 +158,11 @@ namespace HomeLoanManagementSystem.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(255)")
+                        .HasMaxLength(255);
 
                     b.HasKey("Mobile");
 

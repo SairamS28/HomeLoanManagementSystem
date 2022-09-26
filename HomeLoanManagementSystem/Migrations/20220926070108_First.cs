@@ -11,8 +11,7 @@ namespace HomeLoanManagementSystem.Migrations
                 name: "Admins",
                 columns: table => new
                 {
-                    AdminId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AdminId = table.Column<int>(nullable: false),
                     Password = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -21,11 +20,40 @@ namespace HomeLoanManagementSystem.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FAQs",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false),
+                    Question = table.Column<string>(nullable: false),
+                    Answer = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FAQs", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Users",
+                columns: table => new
+                {
+                    Mobile = table.Column<long>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    DateOfBirth = table.Column<DateTime>(nullable: false),
+                    Address = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(maxLength: 255, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Mobile);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Applications",
                 columns: table => new
                 {
-                    ApplicationId = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicationId = table.Column<int>(nullable: false),
+                    Mobile = table.Column<long>(nullable: false),
                     PropertyType = table.Column<string>(nullable: false),
                     PropertyCost = table.Column<decimal>(type: "Decimal(10,6)", nullable: false),
                     Salary = table.Column<decimal>(type: "Decimal(10,6)", nullable: false),
@@ -43,44 +71,19 @@ namespace HomeLoanManagementSystem.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Applications", x => x.ApplicationId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "FAQs",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Question = table.Column<string>(nullable: false),
-                    Answer = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_FAQs", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Users",
-                columns: table => new
-                {
-                    Mobile = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(nullable: false),
-                    DateOfBirth = table.Column<DateTime>(nullable: false),
-                    Address = table.Column<string>(nullable: false),
-                    Name = table.Column<string>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Users", x => x.Mobile);
+                    table.ForeignKey(
+                        name: "FK_Applications_Users_Mobile",
+                        column: x => x.Mobile,
+                        principalTable: "Users",
+                        principalColumn: "Mobile",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Loans",
                 columns: table => new
                 {
-                    LoanNo = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                    LoanNo = table.Column<int>(nullable: false),
                     ReqId = table.Column<int>(nullable: false),
                     LoanStatus = table.Column<string>(nullable: true),
                     ApprovedAmount = table.Column<decimal>(type: "Decimal(10,6)", nullable: false),
@@ -97,6 +100,11 @@ namespace HomeLoanManagementSystem.Migrations
                         principalColumn: "ApplicationId",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Applications_Mobile",
+                table: "Applications",
+                column: "Mobile");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Loans_ReqId",
@@ -116,10 +124,10 @@ namespace HomeLoanManagementSystem.Migrations
                 name: "Loans");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Applications");
 
             migrationBuilder.DropTable(
-                name: "Applications");
+                name: "Users");
         }
     }
 }

@@ -1,5 +1,8 @@
 ﻿using HomeLoanManagementSystem.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace HomeLoanManagementSystem.Repository.UserRepo
 {
@@ -24,7 +27,7 @@ namespace HomeLoanManagementSystem.Repository.UserRepo
 
         public bool UserRegister(User user)
         {
-            var result = _context.Users.FirstOrDefault(emp => emp.Email == user.Email);
+            var result =  _context.Users.FirstOrDefault(emp => emp.Mobile== user.Mobile);
             if (result == null)
             {
                 _context.Users.Add(user);
@@ -36,6 +39,13 @@ namespace HomeLoanManagementSystem.Repository.UserRepo
             }
 
             return true;
+        }
+        public async Task<User> Profile(long? id)
+        {
+
+            var user = await _context.Users
+                .FirstOrDefaultAsync(m => m.Mobile == id);
+            return user;
         }
     }
 }
