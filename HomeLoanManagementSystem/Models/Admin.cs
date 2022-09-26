@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HomeLoanManagementSystem.Models
 {
@@ -6,6 +7,7 @@ namespace HomeLoanManagementSystem.Models
     {
         [Key]
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int AdminId { get; set; }
         [Required]
         [DataType(DataType.Password)]

@@ -8,6 +8,7 @@ namespace HomeLoanManagementSystem.Models
     public class Application
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int ApplicationId { get; set; }
         [ForeignKey("user")]
         public long Mobile{ get; set; }

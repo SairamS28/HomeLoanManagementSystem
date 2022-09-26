@@ -12,12 +12,12 @@ namespace HomeLoanManagementSystem.Controllers
 {
     public class UserController : Controller
     {
-        private readonly CodeFirstContext _context;
+        
         private readonly IUserRepository _repo;
 
-        public UserController(CodeFirstContext context)
+        public UserController(IUserRepository repo)
         {
-            _context = context;
+            _repo = repo;
         }
 
         // GET: User
@@ -52,13 +52,16 @@ namespace HomeLoanManagementSystem.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register([Bind("Mobile,Email,DateOfBirth,Address,Name,Password")] User user)
+        public IActionResult Register( User user)
         {
             if (ModelState.IsValid)
             {
-               await _repo.UserRegister(user);
+                if (_repo.UserRegister(user))
+                {
+                    return RedirectToAction("Login");
+                }
             }
-            return View(user);
+            return View();
         }
         public IActionResult Application()
         {
@@ -68,11 +71,20 @@ namespace HomeLoanManagementSystem.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Application(Application application)
         {
+            
             if (ModelState.IsValid)
             {
                 _repo.Application(application);
             }
             return View(application);
+        }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        public async Task<IActionResult> Login(User user)
+        {
+            return 
         }
     }
 }
