@@ -1,6 +1,7 @@
 ﻿using HomeLoanManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -22,7 +23,7 @@ namespace HomeLoanManagementSystem.Repository.UserRepo
 
         public User UserLogin(Login user)
         {
-            return _context.Users.FirstOrDefault(x => x.Email == user.EmailAddress && x.Password == user.Password);
+            return _context.Users.FirstOrDefault(x => x.Mobile == user.Mobile && x.Password == user.Password);
         }
 
         public bool UserRegister(User user)
@@ -46,6 +47,21 @@ namespace HomeLoanManagementSystem.Repository.UserRepo
             var user = await _context.Users
                 .FirstOrDefaultAsync(m => m.Mobile == id);
             return user;
+        }
+
+        public void UpdatePassword(long? id, User user)
+        {
+            try
+            {
+                _context.Entry(user).State = EntityState.Modified;
+                // _context.Employee.Update(employee);
+                _context.SaveChanges();
+                
+            }
+            catch(SystemException e)
+            {
+                throw e;
+            }
         }
     }
 }
