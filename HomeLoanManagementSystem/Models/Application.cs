@@ -32,8 +32,7 @@ namespace HomeLoanManagementSystem.Models
         public decimal EMI { get; set; }
         [Required]
         public float Tenure { get; set; }
-        
-        [DataType(DataType.DateTime)]
+
         public DateTime ApplicationDate { get; set; }
         
         public string ApplicationStatus { get; set; }

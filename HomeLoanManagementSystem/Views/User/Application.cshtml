@@ -44,19 +44,29 @@
                 <span asp-validation-for="PropertyAddress" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="AadharNo" class="control-label"></label>
+                <input asp-for="AadharNo" class="form-control" />
+                <span asp-validation-for="AadharNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="LoanAmount" class="control-label"></label>
                 <input asp-for="LoanAmount" class="form-control" id="LoanAmt" readonly />
                 <span asp-validation-for="LoanAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="EMI" class="control-label"></label>
-                <input asp-for="EMI" class="form-control" />
-                <span asp-validation-for="EMI" class="text-danger"></span>
+                <label asp-for="Tenure" class="control-label"></label>
+                <input asp-for="Tenure" class="form-control" id="Tenure"/>
+                <span asp-validation-for="Tenure" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Tenure" class="control-label"></label>
-                <input asp-for="Tenure" class="form-control" />
-                <span asp-validation-for="Tenure" class="text-danger"></span>
+                <label asp-for="RateOfInterest" class="control-label"></label>
+                <input asp-for="RateOfInterest" class="form-control" readonly value=8.5/>
+                <span asp-validation-for="RateOfInterest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EMI" class="control-label"></label>
+                <input asp-for="EMI" class="form-control" id="EMI"/>
+                <span asp-validation-for="EMI" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input asp-for="ApplicationDate" class="form-control" style="display:none" />
@@ -71,16 +81,7 @@
                 <input asp-for="PermanentAddress" class="form-control" />
                 <span asp-validation-for="PermanentAddress" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AadharNo" class="control-label"></label>
-                <input asp-for="AadharNo" class="form-control" />
-                <span asp-validation-for="AadharNo" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RateOfInterest" class="control-label"></label>
-                <input asp-for="RateOfInterest" class="form-control" />
-                <span asp-validation-for="RateOfInterest" class="text-danger"></span>
-            </div>
+ 
             <div class="form-group">
                 <input type="submit" value="Apply for loan" class="btn btn-primary" />
             </div>
@@ -100,6 +101,7 @@
     <script>
         $(document).ready(function(){
             $('#EmployeeType').hide();
+
             $('#Salary').change(function(){
                 var res=$('#Salary').val();
                 var amt=80*0.8*res;
@@ -115,11 +117,21 @@
                     
                 }
                 else{
-                    $('#EmployeeType').show();
+                    //$('#EmployeeType').show();
                     $('#EmployeeType').val($('#ET').val()) 
                 }
             })
-
+            $('#Tenure').change(function(){
+                var tenure = $('#Tenure').val();
+                var num1 = Math.pow(1 + 8.5, tenure);
+                var num2=Math.pow(1 + 8.5, tenure-1);
+                var number = (num1 / num2);
+                var res=$('#LoanAmt')*8.5*number
+                alert(num1);
+                alert(num2);
+                alert(number);
+                alert(res);
+            })
 
         })
     </script>

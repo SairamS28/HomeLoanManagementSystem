@@ -33,11 +33,17 @@ namespace HomeLoanManagementSystem
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
             .AddCookie(options => {
 
+             
                 options.Cookie.Name = "MyCookie";
                 options.LoginPath = "/User/login";
                 options.SlidingExpiration = false;
-                
-                });
+
+                options.Cookie.Name = "MyCookie1";
+                options.LoginPath = "/Admin/login";
+                options.SlidingExpiration = false;
+
+
+            });
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.IsEssential = true;
@@ -46,20 +52,6 @@ namespace HomeLoanManagementSystem
             });
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-               .AddCookie(options => {
-
-                   options.Cookie.Name = "MyCookie";
-                   options.LoginPath = "/Employee/login";
-                   options.SlidingExpiration = false;
-
-                   options.Cookie.Name = "MyCookie1";
-                   options.LoginPath = "/Admin/login";
-                   options.SlidingExpiration = false;
-
-
-
-               });
             services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
         }
 
