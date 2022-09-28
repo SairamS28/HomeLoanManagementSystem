@@ -30,6 +30,18 @@ namespace HomeLoanManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options => {
+
+                options.Cookie.Name = "MyCookie";
+                options.LoginPath = "/User/login";
+                options.SlidingExpiration = false;
+                });
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+                options.Cookie.IsEssential = true;
+
+            });
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
@@ -69,11 +81,12 @@ namespace HomeLoanManagementSystem
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Admin}/{action=Login}/");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

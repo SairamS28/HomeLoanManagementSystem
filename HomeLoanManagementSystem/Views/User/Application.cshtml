@@ -14,11 +14,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Mobile" class="control-label"></label>
-                <select asp-for="Mobile" class ="form-control" asp-items="ViewBag.Mobile"></select>
+                <input asp-for="Mobile" value="@ViewBag.Mobile" readonly class="form-control" />
+                <span asp-validation-for="PropertyType" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="PropertyType" class="control-label"></label>
-                <input asp-for="PropertyType" class="form-control" />
+                <select asp-for="PropertyType" class="form-control" asp-items="ViewBag.Property"></select>
                 <span asp-validation-for="PropertyType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,12 +29,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Salary" class="control-label"></label>
-                <input asp-for="Salary" class="form-control" />
+                <input asp-for="Salary" class="form-control" id="Salary" placeholder="Enter your monthly salart"/>
                 <span asp-validation-for="Salary" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EmployeeType" class="control-label"></label>
-                <input asp-for="EmployeeType" class="form-control" />
+                <select id="ET"  class="form-control" asp-items="ViewBag.Employee"></select>
+                <input type="text" asp-for="EmployeeType" id="EmployeeType" />
                 <span asp-validation-for="EmployeeType" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -43,7 +45,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="LoanAmount" class="control-label"></label>
-                <input asp-for="LoanAmount" class="form-control" />
+                <input asp-for="LoanAmount" class="form-control" id="LoanAmt" readonly />
                 <span asp-validation-for="LoanAmount" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -57,13 +59,11 @@
                 <span asp-validation-for="Tenure" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ApplicationDate" class="control-label"></label>
-                <input asp-for="ApplicationDate" class="form-control" />
+                <input asp-for="ApplicationDate" class="form-control" hidden/>
                 <span asp-validation-for="ApplicationDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ApplicationStatus" class="control-label"></label>
-                <input asp-for="ApplicationStatus" class="form-control" />
+                <input asp-for="ApplicationStatus" class="form-control" hidden/>
                 <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -94,4 +94,31 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map</a>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#EmployeeType').hide();
+            $('#Salary').change(function(){
+                var res=$('#Salary').val();
+                var amt=80*0.8*res;
+                $('#LoanAmt').val(amt);
+            })
+            $('#ET').change(function(){
+
+                var res = $('#ET').val()
+                //alert(res)
+                if (res =='Other') {
+                    //alert('hi')
+                    $('#EmployeeType').show();
+                }
+                else{
+                   // $('#EmployeeType').show();
+                }
+            })
+
+
+        })
+    </script>
 }
