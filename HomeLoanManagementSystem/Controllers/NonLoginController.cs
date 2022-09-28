@@ -8,7 +8,7 @@ namespace HomeLoanManagementSystem.Controllers
 {
     public class NonLoginController : Controller
     {
-        private INonLoginRepository _context;
+        //private INonLoginRepository _context;
         //public IActionResult Eligibility(sal)
         //{
         //    public int loan_amt;
