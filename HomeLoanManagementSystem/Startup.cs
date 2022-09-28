@@ -14,6 +14,7 @@ using System.Configuration;
 using HomeLoanManagementSystem.Repository.UserRepo;
 using HomeLoanManagementSystem.Repository.AdminRepo;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using HomeLoanManagementSystem.Repository.Non_Login;
 
 namespace HomeLoanManagementSystem
 {
@@ -30,66 +31,58 @@ namespace HomeLoanManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            //.AddCookie(options => {
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<INonLoginRepository, NonLoginRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddDbContext<CodeFirstContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbCon")));
 
-            //    options.Cookie.Name = "MyCookie";
-            //    options.LoginPath = "/User/login";
-            //    options.SlidingExpiration = false;
-            //    });
-            services.AddSession(options =>
-            {
+            services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.IsEssential = true;
-                
+
 
             });
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-               .AddCookie(options => {
-
-                   options.Cookie.Name = "MyCookie";
-                   options.LoginPath = "/Employee/login";
-                   options.SlidingExpiration = false;
-
-                   options.Cookie.Name = "MyCookie1";
-                   options.LoginPath = "/Admin/login";
-                   options.SlidingExpiration = false;
-
-
-
-               });
-            services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
-        }
-
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
-            if (env.IsDevelopment())
+            .AddCookie(options =>
             {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+                options.Cookie.Name = "MyCookie";
+                options.LoginPath = "/User/login";
+                options.SlidingExpiration = false;
 
-            app.UseRouting();
-            app.UseAuthentication();
-            app.UseAuthorization();
+                options.Cookie.Name = "MyCookie1";
+                options.LoginPath = "/Admin/login";
+                options.SlidingExpiration = false;
 
-            app.UseSession();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+
             });
+        }
+            // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+            public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+            {
+                if (env.IsDevelopment())
+                {
+                    app.UseDeveloperExceptionPage();
+                }
+                else
+                {
+                    app.UseExceptionHandler("/Home/Error");
+                    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                    app.UseHsts();
+                }
+                app.UseHttpsRedirection();
+                app.UseStaticFiles();
+
+                app.UseRouting();
+                app.UseAuthentication();
+                app.UseAuthorization();
+
+                app.UseSession();
+                app.UseEndpoints(endpoints =>
+                {
+                    endpoints.MapControllerRoute(
+                        name: "default",
+                        pattern: "{controller=Home}/{action=Index}/{id?}");
+                });
+            }
         }
     }
-}

@@ -103,7 +103,29 @@
     </dl>
 </div>
 <div>
-    <input type="submit"  value="Approve" name="Approve" class="form-control" />
-    <input type="submit" asp-action="Deny" name="Deny" asp-route-id=@Model.ApplicationId value="Reject" class="form-control" />
+    <input type="submit" id="Approve"  value="Approve" name="Approve" class="form-control" />
+    <input type="submit" id="deny" asp-action="Deny" name="Deny" asp-route-id=@Model.ApplicationId value="Reject" class="form-control" />
 </div>
+    
+    <script src = "~/lib/jquery/dist/jquery.min.js"> </script>
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+       
+        $(document).ready(function(){
+        alert('hi');
+            $('#EmployeeType').hide();
+
+        $('#Approve').click(function(){
+        var res=confirm("Are you sure you want to approve?")
+        return res;
+        });
+            $(#Deny).click(function () {
+                var re=confirm("Are you sure you want to approve?")
+                return re;
+            });
+        }
+        );
+       
+</script>
+   
 </form>
