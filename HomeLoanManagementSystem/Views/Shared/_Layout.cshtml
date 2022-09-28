@@ -6,7 +6,7 @@
     <title>@ViewData["Title"] - HouseLoan</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
+        <link href="~/css/StyleSheet.css" rel="stylesheet" /> 
 
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
@@ -25,51 +25,38 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HomeLoanManagementSystem</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            @if (User.IsInRole("Admin"))
-                            {
-                                <li class="nav-item mx-4">
-                                    <a class="nav-link text-dark" asp-action="ViewAllLoans" asp-controller="admin" asp-area="">ViewAll</a>
-                                </li>
-                               @* <li class="nav-item mx-4">
-                                    <a class="nav-link text-dark" asp-action="Display" asp-controller="Department" asp-area="">Department</a>
-                                </li>*@
-                                <li class="nav-item mx-4">
-                                    <a class="nav-link text-dark" asp-action="Logout" asp-area="" asp-controller="Admin">Logout</a>
-                                </li>
-                            }
-                           
-                        }
-                        else
-                        {
-                            <li class="nav-item mx-4">
-                                <a class="nav-link text-dark" asp-action="Index" asp-controller="Home" asp-area="">Home</a>
-                            </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link text-dark" asp-action="Contactus" asp-area="" asp-controller="Home">Contact</a>
-                            </li>
-
-                            <li class="nav-item mx-4">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="register">Sign Up</a>
-                            </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="login">Employee Login</a>
-                            </li>
-                        }
-
-                    </ul>
-                </div>
-            </div>
+        <!-- Navigation-->
+        <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
+        <nav id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <li class="sidebar-nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li class="sidebar-nav-item">
+                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                </li>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <li class="sidebar-nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Register">Register</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="sidebar-nav-item">
+                        <a class="nav-link text-white" asp-action="logout" asp-area="" asp-controller="User">Logout</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a class="nav-link text-white" asp-action="application" asp-area="" asp-controller="User">Application</a>
+                    </li>
+                    <li class="sidebar-nav-item">
+                        <a class="nav-link text-white" asp-action="ChangePassword" asp-area="" asp-controller="User">Change Password</a>
+                    </li>
+                }
+            </ul>
         </nav>
     </header>
     <div>
