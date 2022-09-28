@@ -65,7 +65,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="EMI" class="control-label"></label>
-                <input asp-for="EMI" class="form-control" id="EMI"/>
+                <input asp-for="EMI" class="form-control" id="EMI" readonly />
                 <span asp-validation-for="EMI" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -123,14 +123,14 @@
             })
             $('#Tenure').change(function(){
                 var tenure = $('#Tenure').val();
-                var num1 = Math.pow(1 + 8.5, tenure);
-                var num2=Math.pow(1 + 8.5, tenure-1);
-                var number = (num1 / num2);
-                var res=$('#LoanAmt')*8.5*number
-                alert(num1);
-                alert(num2);
-                alert(number);
-                alert(res);
+                var num1=(1+8.5)*tenure
+                var num2 = (1 + 8.5) * (tenure-1)
+                var res=($('#LoanAmt').val()*8.5*num1)/num2
+                //alert(num1);
+                //alert(num2);
+                //alert(number);
+                //alert(res);
+                $('#EMI').val(res);
             })
 
         })

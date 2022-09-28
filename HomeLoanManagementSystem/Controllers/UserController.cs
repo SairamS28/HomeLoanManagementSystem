@@ -127,9 +127,9 @@ namespace HomeLoanManagementSystem.Controllers
                     ClaimsPrincipal _user = new ClaimsPrincipal(claimsIdentity);
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, _user, new AuthenticationProperties()
                     {
-                        IsPersistent = true,
+                        IsPersistent = false,
                         //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60),
-                        AllowRefresh = false
+                        AllowRefresh = true
                     }
                         );
 
