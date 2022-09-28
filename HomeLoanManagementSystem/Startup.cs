@@ -41,6 +41,7 @@ namespace HomeLoanManagementSystem
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.IsEssential = true;
+                
 
             });
             services.AddScoped<IUserRepository, UserRepository>();
