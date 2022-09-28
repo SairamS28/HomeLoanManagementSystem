@@ -22,6 +22,10 @@ namespace HomeLoanManagementSystem.Controllers
         
         private readonly IUserRepository _repo;
 
+        public UserController()
+        {
+
+        }
         public UserController(IUserRepository repo)
         {
             _repo = repo;
@@ -35,12 +39,9 @@ namespace HomeLoanManagementSystem.Controllers
         }
 
         // GET: User/Details/?id
-        public async Task<IActionResult> Details(long? id)
+        public async Task<IActionResult> Details()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            var id = long.Parse(HttpContext.Session.GetString("Mobile No"));
             var user = await _repo.Profile(id);
             if (user == null)
             {
@@ -77,7 +78,7 @@ namespace HomeLoanManagementSystem.Controllers
         {
             ViewBag.Property = new SelectList(new List<string>() { "Commercial", "Residential Apartment","Residential House" });
             ViewBag.Employee = new SelectList(new List<string>() { "Self-Employed","Goverment","Salaried","Other"});
-            ViewBag.Mobile = HttpContext.Session.GetString("Mobile No");
+            //ViewBag.Mobile = HttpContext.Session.GetString("Mobile No");
             return View();
         }
         [HttpPost]

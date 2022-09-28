@@ -27,33 +27,36 @@
     <header>
         <!-- Navigation-->
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
-        <nav id="sidebar-wrapper">
+        <nav id="sidebar-wrapper"class="text-center">
             <ul class="sidebar-nav">
-                <li class="sidebar-nav-item">
+                <li class="sidebar-nav-item" style="font-size:medium">
                     <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                 </li>
-                <li class="sidebar-nav-item">
+                <li class="sidebar-nav-item" style="font-size:medium">
                     <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </li>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Register">Register</a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Login">Login</a>
                     </li>
                 }
                 else
                 {
-                    <li class="sidebar-nav-item">
-                        <a class="nav-link text-white" asp-action="logout" asp-area="" asp-controller="User">Logout</a>
-                    </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-action="application" asp-area="" asp-controller="User">Application</a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-action="ChangePassword" asp-area="" asp-controller="User">Change Password</a>
+                    </li>
+                    <li class="sidebar-nav-item" style="font-size:medium">
+                        <a class="nav-link text-white" asp-action="Details" asp-area="" asp-controller="User">Details</a>
+                    </li>
+                    <li class="sidebar-nav-item" style="font-size:medium">
+                        <a class="nav-link text-white" asp-action="logout" asp-area="" asp-controller="User">Logout</a>
                     </li>
                 }
             </ul>

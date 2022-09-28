@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\JavaScript.js" />
-    <None Include="wwwroot\JavaScript1.js" />
+    <None Include="wwwroot\faqJavaScript.js" />
+    <None Include="wwwroot\faqJavaScript1.js" />
     <None Include="wwwroot\StyleSheet.css" />
   </ItemGroup>
 
