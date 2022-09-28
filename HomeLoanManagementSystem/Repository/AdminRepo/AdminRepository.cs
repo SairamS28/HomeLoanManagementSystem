@@ -66,7 +66,7 @@ namespace HomeLoanManagementSystem.Repository.AdminRepo
 
         public IEnumerable<Application> ViewAllApplications()
         {
-            return _context.Applications;
+            return _context.Applications.Where(x=>x.ApplicationStatus=="Pending");
         }
 
         public IEnumerable<Application> ViewApproved()
