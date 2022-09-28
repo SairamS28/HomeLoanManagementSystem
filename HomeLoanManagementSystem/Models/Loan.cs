@@ -13,7 +13,7 @@ namespace HomeLoanManagementSystem.Models
         public int ReqId { get; set; }
         public string LoanStatus { get; set; }
         [Required]
-        [Column(TypeName = "Decimal(10,6)")]
+        [Column(TypeName = "Decimal(10,2)")]
         public decimal ApprovedAmount { get; set; }
         [Required]
         public DateTime LoanStartDate { get; set; }

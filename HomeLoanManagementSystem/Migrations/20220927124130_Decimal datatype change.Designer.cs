@@ -4,14 +4,16 @@ using HomeLoanManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HomeLoanManagementSystem.Migrations
 {
     [DbContext(typeof(CodeFirstContext))]
-    partial class CodeFirstContextModelSnapshot : ModelSnapshot
+    [Migration("20220927124130_Decimal datatype change")]
+    partial class Decimaldatatypechange
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -79,9 +81,6 @@ namespace HomeLoanManagementSystem.Migrations
                     b.Property<float>("RateOfInterest")
                         .HasColumnType("real");
 
-                    b.Property<string>("Remarks")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<decimal>("Salary")
                         .HasColumnType("Decimal(10,2)");
 
@@ -119,7 +118,7 @@ namespace HomeLoanManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("ApprovedAmount")
-                        .HasColumnType("Decimal(10,2)");
+                        .HasColumnType("Decimal(10,6)");
 
                     b.Property<DateTime>("LoanEndDate")
                         .HasColumnType("datetime2");
