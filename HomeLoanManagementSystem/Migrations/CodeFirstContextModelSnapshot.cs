@@ -49,14 +49,14 @@ namespace HomeLoanManagementSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("EMI")
-                        .HasColumnType("Decimal(10,6)");
+                        .HasColumnType("Decimal(10,2)");
 
                     b.Property<string>("EmployeeType")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("LoanAmount")
-                        .HasColumnType("Decimal(10,6)");
+                        .HasColumnType("Decimal(10,2)");
 
                     b.Property<long>("Mobile")
                         .HasColumnType("bigint");
@@ -70,7 +70,7 @@ namespace HomeLoanManagementSystem.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("PropertyCost")
-                        .HasColumnType("Decimal(10,6)");
+                        .HasColumnType("Decimal(10,2)");
 
                     b.Property<string>("PropertyType")
                         .IsRequired()
@@ -79,8 +79,11 @@ namespace HomeLoanManagementSystem.Migrations
                     b.Property<float>("RateOfInterest")
                         .HasColumnType("real");
 
+                    b.Property<string>("Remarks")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<decimal>("Salary")
-                        .HasColumnType("Decimal(10,6)");
+                        .HasColumnType("Decimal(10,2)");
 
                     b.Property<float>("Tenure")
                         .HasColumnType("real");
@@ -116,7 +119,7 @@ namespace HomeLoanManagementSystem.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("ApprovedAmount")
-                        .HasColumnType("Decimal(10,6)");
+                        .HasColumnType("Decimal(10,2)");
 
                     b.Property<DateTime>("LoanEndDate")
                         .HasColumnType("datetime2");

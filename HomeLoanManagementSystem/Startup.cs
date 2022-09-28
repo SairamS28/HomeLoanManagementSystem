@@ -12,6 +12,8 @@ using HomeLoanManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using HomeLoanManagementSystem.Repository.UserRepo;
+using HomeLoanManagementSystem.Repository.AdminRepo;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using HomeLoanManagementSystem.Repository.FAQRepo;
 
 namespace HomeLoanManagementSystem
@@ -29,7 +31,36 @@ namespace HomeLoanManagementSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            //services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //.AddCookie(options => {
+
+            //    options.Cookie.Name = "MyCookie";
+            //    options.LoginPath = "/User/login";
+            //    options.SlidingExpiration = false;
+            //    });
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(15);
+                options.Cookie.IsEssential = true;
+                
+
+            });
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IAdminRepository, AdminRepository>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+               .AddCookie(options => {
+
+                   options.Cookie.Name = "MyCookie";
+                   options.LoginPath = "/Employee/login";
+                   options.SlidingExpiration = false;
+
+                   options.Cookie.Name = "MyCookie1";
+                   options.LoginPath = "/Admin/login";
+                   options.SlidingExpiration = false;
+
+
+
+               });
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
         }
@@ -54,6 +85,7 @@ namespace HomeLoanManagementSystem
             app.UseAuthentication();
             app.UseAuthorization();
 
+            app.UseSession();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

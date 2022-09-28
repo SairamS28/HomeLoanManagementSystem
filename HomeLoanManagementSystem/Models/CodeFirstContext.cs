@@ -15,7 +15,7 @@ namespace HomeLoanManagementSystem.Models
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Loan> Loans { get; set; }
         public virtual DbSet<Application> Applications { get; set; }
-        public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<FAQ> FAQs { get; set; }
     }
 }
