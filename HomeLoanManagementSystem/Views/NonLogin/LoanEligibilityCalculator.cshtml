@@ -1,0 +1,88 @@
+﻿@model HomeLoanManagementSystem.Models.EMIModel
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@{
+    ViewData["Title"] = "Loan Eligibility Calculator";
+}
+
+<style>
+
+    body {
+        background-image: url('greenbg.jpg');
+        background-color: bisque;
+        background-repeat: no-repeat;
+        background-size: 50% 100%
+
+}
+
+
+    #loancal {
+        width: 345px;
+        height: 420px;
+        background-color: white;
+        color: #fff;
+        padding: 10px;
+        margin: 100px auto;
+        border-radius: 3px;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    }
+
+    h1 {
+        font-size: 30px;
+        text-align: center;
+        color: #6CA0DC;
+        margin-bottom: 35px;
+    }
+    .sal{
+        color: #547FA4;
+        text-align: center;
+        margin-top: 10px;
+        
+    }
+
+    .container {
+        text-align: center;
+    }
+
+
+
+</style>
+    <body>
+    <div class="d-flex justify-content-center">
+
+        <div id="loancal" class="rounded">
+        <br />
+
+        <h1>Loan Calculator</h1>
+        <form asp-action="LoanEligibilityCalculator" />
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+
+            <p class="sal">Monthly Salary</p>   <label asp-for="salary" class="control-label">Monthly Salary</label>
+            <input asp-for="salary" class="form-control" />
+            <span asp-validation-for="salary" name="salary" class="text-danger"></span>
+        </div>
+        <div class="container">
+            <br />
+            <input type="submit" value="Calculate" asp-action="LoanEligibilityCalculator" class="btn btn-primary" /><br />.
+            <div class="border mx-5 rounded-sm ">
+                <p class="sal">@ViewBag.result</p>
+            </div>
+           
+        </div>
+
+
+
+    </div>
+    </div>
+    </body>
+
+
+
+
+

@@ -82,9 +82,6 @@ namespace HomeLoanManagementSystem.Controllers
         {
             return View();
         }
-        public async Task<IActionResult> Login(User user)
-        {
-            return 
-        }
+      
     }
 }

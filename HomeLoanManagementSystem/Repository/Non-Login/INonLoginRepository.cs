@@ -4,7 +4,7 @@ namespace HomeLoanManagementSystem.Repository.Non_Login
 {
     public interface INonLoginRepository
     {
-        decimal calculateEmi(EMIModel emi);
+        float calculateEmi(EMIModel emi);
         decimal loanEligibilityCalculator(decimal Salary);
     }
 }

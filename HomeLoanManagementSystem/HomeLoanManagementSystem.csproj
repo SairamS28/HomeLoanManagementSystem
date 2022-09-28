@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\JavaScript.js" />
+    <None Include="wwwroot\JavaScript1.js" />
+    <None Include="wwwroot\StyleSheet.css" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.28" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.28">
       <PrivateAssets>all</PrivateAssets>

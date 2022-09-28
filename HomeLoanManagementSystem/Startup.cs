@@ -12,6 +12,7 @@ using HomeLoanManagementSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using HomeLoanManagementSystem.Repository.UserRepo;
+using HomeLoanManagementSystem.Repository.FAQRepo;
 
 namespace HomeLoanManagementSystem
 {
@@ -29,7 +30,7 @@ namespace HomeLoanManagementSystem
         {
             services.AddControllersWithViews();
             services.AddScoped<IUserRepository, UserRepository>();
-
+            services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
         }
 
