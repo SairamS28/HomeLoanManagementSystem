@@ -17,7 +17,7 @@ int_rate_slider.addEventListener("input", (self) => {
         self.target.value + "%";
     R = parseFloat(self.target.value);
     displayDetails();
-    });
+});
 
 // update loan period
 loan_period_slider.addEventListener("input", (self) => {
@@ -52,12 +52,12 @@ function calculateLoanDetails(p, r, emi) {
             yearPrincipal.push(parseInt(principal));
             counter = 0;
         }
-        }
+    }
     line.data.datasets[0].data = yearPrincipal;
     line.data.datasets[1].data = yearlyInterest;
     line.data.labels = years;
     return totalInterest;
-        }
+}
 
 // calculate details
 function displayDetails() {
@@ -91,7 +91,7 @@ function displayDetails() {
     pie.data.datasets[0].data[1] = payabaleInterest;
     pie.update();
     line.update();
-    }
+}
 
 // Initialize everything
 function initialize() {
@@ -146,11 +146,7 @@ function initialize() {
                         display: true,
                         text: "Money in Rs."
                     }
-            }
-        } else {
-            if (scrollToTopVisible) {
-                fadeOut(scrollToTop);
-                scrollToTopVisible = false;
+                }
             }
         }
     });
@@ -178,5 +174,5 @@ function initialize() {
         }
     });
     displayDetails();
-        }
+}
 initialize();
