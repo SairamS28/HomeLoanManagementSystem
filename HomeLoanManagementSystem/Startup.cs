@@ -35,10 +35,12 @@ namespace HomeLoanManagementSystem
                 options.Cookie.Name = "MyCookie";
                 options.LoginPath = "/User/login";
                 options.SlidingExpiration = false;
+                
                 });
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.IsEssential = true;
+                
 
             });
             services.AddScoped<IUserRepository, UserRepository>();

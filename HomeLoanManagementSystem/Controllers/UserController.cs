@@ -73,7 +73,6 @@ namespace HomeLoanManagementSystem.Controllers
             }
             return View();
         }
-        [AllowAnonymous]
         public IActionResult Application()
         {
             ViewBag.Property = new SelectList(new List<string>() { "Commercial", "Residential Apartment","Residential House" });
@@ -82,10 +81,12 @@ namespace HomeLoanManagementSystem.Controllers
             return View();
         }
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult Application(Application application)
         {
+            ViewBag.Property = new SelectList(new List<string>() { "Commercial", "Residential Apartment", "Residential House" });
+            ViewBag.Employee = new SelectList(new List<string>() { "Self-Employed", "Goverment", "Salaried", "Other" });
+            ViewBag.Mobile = HttpContext.Session.GetString("Mobile No");
             application.ApplicationDate = DateTime.Now;
             application.ApplicationStatus = "Pending";
             if (ModelState.IsValid)
