@@ -14,6 +14,7 @@ using System.Configuration;
 using HomeLoanManagementSystem.Repository.UserRepo;
 using HomeLoanManagementSystem.Repository.AdminRepo;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using HomeLoanManagementSystem.Repository.FAQRepo;
 using HomeLoanManagementSystem.Repository.Non_Login;
 
 namespace HomeLoanManagementSystem
@@ -56,6 +57,9 @@ namespace HomeLoanManagementSystem
                 //options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
 
 
+               });
+            services.AddScoped<IFAQRepository, FAQRepository>();
+            services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
             });
         }
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

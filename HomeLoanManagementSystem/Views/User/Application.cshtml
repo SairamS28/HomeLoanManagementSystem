@@ -3,15 +3,15 @@
 @{
     ViewData["Title"] = "Application";
 }
-
-<h1>Application</h1>
-
-<h4>Application</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
+<div style="background-color:rgba(128,128,128,0.2)" class="vh-100">
+<div class="shadow mb-5 mx-5">
+<h1 class="text-center text-black">Application</h1>
+<div class="row justify-content-center text-black">
+    <div class="col-md-8 ">
         <form asp-action="Application">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="d-flex flex-row align-items-center justify-content-center">
+            <section class="w-50">
             <div class="form-group">
                 <label asp-for="Mobile" class="control-label"></label>
                 <input asp-for="Mobile" value="@ViewBag.Mobile" readonly class="form-control" />
@@ -39,15 +39,13 @@
                 <span asp-validation-for="EmployeeType" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PropertyAddress" class="control-label"></label>
-                <input asp-for="PropertyAddress" class="form-control" />
-                <span asp-validation-for="PropertyAddress" class="text-danger"></span>
+                <label asp-for="PermanentAddress" class="control-label"></label>
+                <input asp-for="PermanentAddress" class="form-control" />
+                <span asp-validation-for="PermanentAddress" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="AadharNo" class="control-label"></label>
-                <input asp-for="AadharNo" class="form-control" />
-                <span asp-validation-for="AadharNo" class="text-danger"></span>
-            </div>
+ 
+            </section>
+            <section class="w-50 ml-2">
             <div class="form-group">
                 <label asp-for="LoanAmount" class="control-label"></label>
                 <input asp-for="LoanAmount" class="form-control" id="LoanAmt" readonly />
@@ -65,7 +63,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="EMI" class="control-label"></label>
-                <input asp-for="EMI" class="form-control" id="EMI"/>
+                <input asp-for="EMI" class="form-control" id="EMI" readonly />
                 <span asp-validation-for="EMI" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -77,25 +75,29 @@
                 <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PermanentAddress" class="control-label"></label>
-                <input asp-for="PermanentAddress" class="form-control" />
-                <span asp-validation-for="PermanentAddress" class="text-danger"></span>
+            <label asp-for="PropertyAddress" class="control-label"></label>
+            <input asp-for="PropertyAddress" class="form-control" />
+            <span asp-validation-for="PropertyAddress" class="text-danger"></span>
             </div>
- 
-            <div class="form-group">
-                <input type="submit" value="Apply for loan" class="btn btn-primary" />
+                    <div class="form-group">
+                        <label asp-for="AadharNo" class="control-label"></label>
+                        <input asp-for="AadharNo" class="form-control" />
+                        <span asp-validation-for="AadharNo" class="text-danger"></span>
+                    </div>
+            </section>
+            </div>
+            <div class="form-group center">
+                <input type="submit" value="Apply for loan" class="btn btn-danger" />
             </div>
         </form>
     </div>
 </div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
+    </div>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <a href="~/lib/jquery/dist/jquery.min.map">~/lib/jquery/dist/jquery.min.map></a>
+    <a href="~/lib/jquery/dist/jquery.min.map"></a>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script>
@@ -123,14 +125,14 @@
             })
             $('#Tenure').change(function(){
                 var tenure = $('#Tenure').val();
-                var num1 = Math.pow(1 + 8.5, tenure);
-                var num2=Math.pow(1 + 8.5, tenure-1);
-                var number = (num1 / num2);
-                var res=$('#LoanAmt')*8.5*number
-                alert(num1);
-                alert(num2);
-                alert(number);
-                alert(res);
+                var num1=(1+8.5)*tenure
+                var num2 = (1 + 8.5) * (tenure-1)
+                var res=($('#LoanAmt').val()*8.5*num1)/num2
+                //alert(num1);
+                //alert(num2);
+                //alert(number);
+                //alert(res);
+                $('#EMI').val(res);
             })
 
         })
