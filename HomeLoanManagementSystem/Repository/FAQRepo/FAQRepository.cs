@@ -13,17 +13,10 @@ namespace HomeLoanManagementSystem.Repository.FAQRepo
             _context = context;
         }
 
-        
-        public void Create(FAQ faq)
-        {
-            _context.FAQs.Add(faq);
-            _context.SaveChanges();
-        }
-
-        public List<FAQ> details()
-        {
-            return _context.FAQs.ToList();
-        }
+        //public List<FAQ> details()
+        //{
+        //    throw new System.NotImplementedException();
+        //}
 
         public List<FAQ> DummyFAQ()
         {

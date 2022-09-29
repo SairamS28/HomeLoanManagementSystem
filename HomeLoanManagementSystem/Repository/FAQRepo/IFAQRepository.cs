@@ -5,8 +5,7 @@ namespace HomeLoanManagementSystem.Repository.FAQRepo
 {
     public interface IFAQRepository
     {
-        List<FAQ> details();
-        void Create(FAQ faq);
+        //List<FAQ> details();
 
         List<FAQ> DummyFAQ();
 

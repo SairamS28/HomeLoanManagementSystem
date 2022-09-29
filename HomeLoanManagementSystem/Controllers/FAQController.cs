@@ -17,28 +17,14 @@ namespace HomeLoanManagementSystem.Controllers
 
 
         // GET: FAQController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View(_Repo.details());
-        }
+        //public ActionResult Details(int id)
+        //{
+        //    return View(_Repo.details());
+        //}
 
-        // GET: FAQController/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: FAQController/Create
-        [HttpPost]
-
-        public IActionResult Create(FAQ faq)
-        {
-            _Repo.Create(faq);
-            return View();
-        }
         public ActionResult DummyFAQ(int id)
         {
-            return View(_Repo.details());
+            return View(_Repo.DummyFAQ());
         }
      
 

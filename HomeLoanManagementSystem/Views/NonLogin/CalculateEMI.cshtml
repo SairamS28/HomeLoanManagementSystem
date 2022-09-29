@@ -9,8 +9,8 @@
 }
 <style>
     .row{
-        width: 400px;
-        height: 450px;
+        width: 650px;
+        height: 550px;
         background-color: white;
         color: #000;
         padding: 10px;
@@ -19,22 +19,41 @@
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
 
-    h1 {
+    h4 {
         font-size: 30px;
-        text-align: center;
-        color: #6CA0DC;
-        margin-bottom: 35px;
+        /*text-align: center;*/
+        color: orange;
+        /*margin-bottom: 35px;*/
+    }
+    .card-text{
+        font-size: 21px;
+    }
+    .form-group{
+        font-size: 18px;
+    }
+    .btn-btn-primary{
+        text-align:center;
+        color: orange;
+        justify-content: center;
+        font-size: 21px;
+    }
+
+    .form-group-btn{
+        justify-content:center;
     }
 </style>
-<div class="d-flex justify-content-center"> 
-  
-
-    <div class="card w-50 mx-2 my-2">
+<div class="d-flex justify-content-center" style="text-align:center"> 
+  <div></div>
+    
+    <div class="card w-50 mx-2 my-2" >
         <img alt="example"
              class="img-fluid rounded"
-             src="https://mdbcdn.b-cdn.net/img/new/standard/city/044.webp" />
+             src="~/home-loan-1.jpg" />
         <div class="card-block my-4">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text">
+                <b>Interested in availing a home loan but unsure of the EMIs to pay ? </b>Estimate your EMI by using our Home Loan EMI calculator.
+                Calculating EMIs help you plan your monthly budget. Input the loan amount and the tenure. 
+                The calculator will then display the EMI amount you will need to pay each month with a rate of interest as 8.5%. </p>
         </div>
     </div>
 
@@ -42,7 +61,7 @@
     <div class="row">
        
         <div class="col-md-12">
-            <h4 class="text-center">EMI Calculator</h4>
+            <h4 class="text-center" >EMI Calculator</h4>
             <form asp-action="CalculateEMI">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-group">
@@ -75,12 +94,11 @@
                     <input asp-for="rate" value="8.5" readonly class="form-control" />
                     <span asp-validation-for="rate" class="text-danger"></span>
                 </div>
-                <div class="form-group">
-                    <input type="submit" value="Calculate" class="btn btn-primary" />
-                    @ViewBag.result
-@*                    <div>
-                        @ViewBag.result
-                    </div>*@
+                <div class="form-group-btn">
+                    <input type="submit" value="Calculate" class="btn-btn-primary" style="text-align:center"/>
+                    <br />
+                    <span style="font-weight:Bold; font-size:20px; align-self:center;"> @ViewBag.result</span>
+                    
                 </div>
                 
             </form>
