@@ -57,7 +57,7 @@ namespace HomeLoanManagementSystem.Controllers
                     }
                         );
                     
-                    return RedirectToAction("Index");
+                    return RedirectToAction("ViewAllApplications");
 
                 }
                 ModelState.AddModelError(string.Empty, "Invalid username and password");
