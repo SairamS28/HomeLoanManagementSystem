@@ -25,35 +25,43 @@
 </head>
 <body>
     <header>
+        <!-- Image and text -->
+        <!-- Just an image -->
+        <nav class="py-5 justify-content-start my-1" style="background-color:rgba(29,129,159,1)">
+            <a class="navbar-brand" href="#">
+                <img src="~/assets/Logog.png" width="50" height="50" alt="">
+            </a>
+            <p class="text-warning" style="font-size:x-large">Home Loan Management System</p>
+        </nav>
         <!-- Navigation-->
         <a class="menu-toggle rounded" href="#"><i class="fas fa-bars"></i></a>
-        <nav id="sidebar-wrapper">
+        <nav id="sidebar-wrapper"class="text-center">
             <ul class="sidebar-nav">
-                <li class="sidebar-nav-item">
+                <li class="sidebar-nav-item" style="font-size:medium">
                     <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                </li>
-                <li class="sidebar-nav-item">
-                    <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                 </li>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Register">Register</a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-area="" asp-controller="User" asp-action="Login">Login</a>
                     </li>
                 }
                 else
                 {
-                    <li class="sidebar-nav-item">
-                        <a class="nav-link text-white" asp-action="logout" asp-area="" asp-controller="User">Logout</a>
-                    </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-action="application" asp-area="" asp-controller="User">Application</a>
                     </li>
-                    <li class="sidebar-nav-item">
+                    <li class="sidebar-nav-item" style="font-size:medium">
                         <a class="nav-link text-white" asp-action="ChangePassword" asp-area="" asp-controller="User">Change Password</a>
+                    </li>
+                    <li class="sidebar-nav-item" style="font-size:medium">
+                        <a class="nav-link text-white" asp-action="Details" asp-area="" asp-controller="User">Details</a>
+                    </li>
+                    <li class="sidebar-nav-item" style="font-size:medium">
+                        <a class="nav-link text-white" asp-action="logout" asp-area="" asp-controller="User">Logout</a>
                     </li>
                 }
             </ul>
@@ -64,6 +72,35 @@
             @RenderBody()
         </main>
     </div>
+    <!-- Remove the container if you want to extend the Footer to full width. -->
+    <div class="my-2">
+
+        <footer class="text-center text-lg-start" style="background-color: rgba(29,129,159,1);">
+            <div class="container d-flex justify-content-center py-5">
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: rgba(29,129,159,0.2);">
+                    <i class="fab fa-facebook-f"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: rgba(29,129,159,0.2);">
+                    <i class="fab fa-youtube"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: rgba(29,129,159,0.2);">
+                    <i class="fab fa-instagram"></i>
+                </button>
+                <button type="button" class="btn btn-primary btn-lg btn-floating mx-2" style="background-color: rgba(29,129,159,0.2);">
+                    <i class="fab fa-twitter"></i>
+                </button>
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+                Admin Login:
+                <a class="text-white" asp-action="Login" asp-controller="Admin" asp-area="">Admins Only</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+    </div>
+    <!-- End of .container -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
