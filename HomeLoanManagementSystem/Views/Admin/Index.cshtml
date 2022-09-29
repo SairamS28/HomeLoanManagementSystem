@@ -3,26 +3,5 @@
     ViewData["Title"] = "Index";
 }
 
-<div style="display:flex; flex-direction:row;gap:4rem">
 
 
-<div>
-    <a asp-action="ViewAllLoans">
-        No of Applications
-        <h3>@ViewBag.ApplicationCount</h3>
-    </a>
-</div>
-<div>
-   <a asp-action="ViewApproved">
-       No of Approved
-    <h3>@ViewBag.ApprovedCount</h3>
-        </a>
-</div>
-<div>
-   <a asp-action="ViewDenied">
-       No of Denied
-    <h3>@ViewBag.DeniedCount</h3>
-   </a>
-</div>
-
-</div>

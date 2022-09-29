@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace HomeLoanManagementSystem.Controllers
 {
-    [Authorize]
+    [Authorize(Roles ="Admin")]
     public class AdminController : Controller
     {
         public IAdminRepository _repo;
@@ -30,6 +30,7 @@ namespace HomeLoanManagementSystem.Controllers
             //ViewBag.url = url;
             return View();
         }
+       
         [AllowAnonymous]
         [HttpPost]
         public IActionResult Login(Admin admin)
@@ -72,16 +73,17 @@ namespace HomeLoanManagementSystem.Controllers
         }
         public IActionResult Index()
         {
-           ViewBag.ApplicationCount = _repo.GetApplicationCount();
-            ViewBag.ApprovedCount    = _repo.GetApprovedApplicationCount();
-            ViewBag.DeniedCount = _repo.GetDeniedApplicationCount();
+           
             return View();
         }
 
         [Authorize]
-        public IActionResult ViewAllLoans()
+        public IActionResult ViewAllApplications()
         {
-           var result =  _repo.ViewAllApplications();
+            ViewBag.ApplicationCount = _repo.GetAllloans().Count();
+            ViewBag.ApprovedCount = _repo.GetApprovedApplicationCount();
+            ViewBag.DeniedCount = _repo.GetDeniedApplicationCount();
+            var result =  _repo.ViewAllApplications();
            return View(result);
         }
 
@@ -101,7 +103,7 @@ namespace HomeLoanManagementSystem.Controllers
 
 
 
-        [Authorize]
+        
         public IActionResult ViewLoanById(int id)
         {
             var application = _repo.ViewByAppId(id);
@@ -113,7 +115,7 @@ namespace HomeLoanManagementSystem.Controllers
         }
 
         [HttpPost("{id}")]
-        public IActionResult Approve(int id,string Approve,string Deny)
+        public IActionResult Approve(int id,string Approve,string Deny,string remarks)
         {
             if (Approve == "Approve")
             {
@@ -137,8 +139,9 @@ namespace HomeLoanManagementSystem.Controllers
             {
                 var application = _repo.ViewByAppId(id);
                 application.ApplicationStatus = "Rejected";
+                application.Remarks = remarks;
                 _repo.DenyLoan(id, application);
-                return View();
+                return RedirectToAction("ViewAllLoans");
             }
           
         }
@@ -148,7 +151,10 @@ namespace HomeLoanManagementSystem.Controllers
            return View(_repo.GetLoanDetails(id));
         }
 
-        
+        public IActionResult ViewAllLoans()
+        {
+            return View(_repo.GetAllloans());
+        }
        
         
     }

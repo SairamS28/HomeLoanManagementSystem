@@ -36,7 +36,18 @@ namespace HomeLoanManagementSystem.Repository.AdminRepo
 
         public bool DenyLoan(int? appId, Application application)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                _context.Entry(application).State = EntityState.Modified;
+
+                
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public int GetApplicationCount()
@@ -90,6 +101,12 @@ namespace HomeLoanManagementSystem.Repository.AdminRepo
         public Loan GetLoanDetails(int id)
         {
            return _context.Loans.FirstOrDefault(x => x.ReqId == id);
+        }
+
+        public IEnumerable<Loan> GetAllloans()
+        {
+            return _context.Loans;
+            
         }
     }
 }

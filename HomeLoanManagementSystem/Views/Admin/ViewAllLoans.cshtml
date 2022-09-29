@@ -1,69 +1,52 @@
-﻿@model IEnumerable<HomeLoanManagementSystem.Models.Application>
+﻿@model IEnumerable<HomeLoanManagementSystem.Models.Loan>
 
 @{
     ViewData["Title"] = "ViewAllLoans";
 }
 
+<h1>ViewAllLoans</h1>
 
 
-
-<></>
-
-<div style="width:65%; height:auto; margin-right:auto; align-items:center; margin-top:8%;" class="center vertical-scrollable">
-    <table class="table table-bordered table-definition mb-5 font-size-lg ">
-        <thead style=" background-color: #1D809F; text-decoration-color:white;">
-
+<table class="table">
+    <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationId)
+                @Html.DisplayNameFor(model => model.LoanStatus)
             </th>
-
             <th>
-                @Html.DisplayNameFor(model => model.PropertyType)
+                @Html.DisplayNameFor(model => model.ApprovedAmount)
             </th>
-
-
             <th>
-                @Html.DisplayNameFor(model => model.LoanAmount)
+                @Html.DisplayNameFor(model => model.LoanStartDate)
             </th>
-
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationDate)
+                @Html.DisplayNameFor(model => model.LoanEndDate)
             </th>
-
             <th>
-                @Html.DisplayNameFor(model => model.ApplicationStatus)
+                @Html.DisplayNameFor(model => model.application)
             </th>
-
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationId)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.PropertyType)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.LoanAmount)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationDate)
-                </td>
-
-                <td>
-                    @Html.DisplayFor(modelItem => item.ApplicationStatus)
-                </td>
-
-                <td>
-                    @Html.ActionLink("Details", "ViewLoanById", new {  id=item.ApplicationId }) 
-                </td>
-            </tr>
-            }
-</div>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ApprovedAmount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoanEndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.application.EmployeeType)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

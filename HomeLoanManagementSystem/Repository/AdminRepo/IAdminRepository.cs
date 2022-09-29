@@ -27,5 +27,7 @@ namespace HomeLoanManagementSystem.Repository.AdminRepo
 
         Loan GetLoanDetails(int id);
 
+        IEnumerable<Loan> GetAllloans();
+
     }
 }

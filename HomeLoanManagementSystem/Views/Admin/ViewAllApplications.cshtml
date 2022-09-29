@@ -1,0 +1,113 @@
+﻿@model IEnumerable<HomeLoanManagementSystem.Models.Application>
+
+@{
+    ViewData["Title"] = "ViewAllLoans";
+}
+
+
+<style>
+    h3, h4 {
+        color: mintcream;
+    }
+
+    a{
+        color: #1D809F;
+    }
+
+        a:hover {
+            text-decoration: none;
+        }
+
+    .card {
+        border-radius:15%;
+        background-color: #1D809F;
+    }
+</style>
+
+
+<div class="container p-lg-5">
+    <div class="row py-6" style="display:flex; flex-direction:row;gap:4rem">
+        <div class="col card ">
+            <div class="align-content-center justify-content-center">
+                <a asp-action="ViewAllLoans">
+                    <h4 class="align-content-center">Total no of active loans</h4>
+                    <h3 class="align-content-center"> @ViewBag.ApplicationCount</h3>
+                </a>
+            </div>
+
+        </div>
+        <div class="col card">
+            <a asp-action="ViewApproved">
+                <h4> No of Approved</h4>
+                <h3> @ViewBag.ApprovedCount</h3>
+            </a>
+        </div>
+        <div class="col card">
+            <a asp-action="ViewDenied">
+                <h4>No of Denied </h4>
+                <h3>@ViewBag.DeniedCount</h3>
+            </a>
+        </div>
+    </div>
+
+
+
+<div style="width:85%; height:auto; margin:auto; align-items:center; margin-top:8%;" class="center vertical-scrollable">
+    <table class="table table-bordered table-definition mb-5 font-size-lg ">
+        <thead style=" background-color: #1D809F; text-decoration-color:white;">
+
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationId)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.PropertyType)
+            </th>
+    
+
+            <th>
+                @Html.DisplayNameFor(model => model.LoanAmount)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationDate)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.ApplicationStatus)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationId)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.PropertyType)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoanAmount)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationDate)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApplicationStatus)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Details", "ViewLoanById", new {  id=item.ApplicationId }) 
+                </td>
+            </tr>
+            }
+            </table>
+</div>

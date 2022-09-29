@@ -4,24 +4,23 @@
     ViewData["Title"] = "ViewLoanById";
 }
 
+<style>
+    dd{
+        justify-content:center
+    }
+    h1{
+        background-color: teal;
+
+    }
+</style>
+
 <form asp-action="Approve" asp-route-id=@Model.ApplicationId>
 
+
 <div>
-    <h4>Application</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ApplicationId)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ApplicationId)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Mobile)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Mobile)
-        </dd>
+    <h1>Application Details</h1>
+    
+    <dl class="row justify-content-center">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PropertyType)
         </dt>
@@ -100,28 +99,42 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.RateOfInterest)
         </dd>
+        
     </dl>
 </div>
-<div>
-    <input type="submit" id="Approve"  value="Approve" name="Approve" class="form-control" />
-    <input type="submit" id="deny" asp-action="Deny" name="Deny" asp-route-id=@Model.ApplicationId value="Reject" class="form-control" />
-</div>
+
+ <div style="margin-left:40%;">
+        <input type="hidden" name="remarks" id="remarks" />
+        <input type="submit" id="Approve" value="Approve" name="Approve" class="btn btn-secondary btn-lg " />
+        <input type="submit" id="Deny" name="Deny" value="Reject" class="btn btn-secondary btn-lg " />
+    </div>
+
     
     <script src = "~/lib/jquery/dist/jquery.min.js"> </script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
 <script>
        
         $(document).ready(function(){
-        alert('hi');
-            $('#EmployeeType').hide();
 
         $('#Approve').click(function(){
         var res=confirm("Are you sure you want to approve?")
         return res;
         });
-            $(#Deny).click(function () {
-                var re=confirm("Are you sure you want to approve?")
-                return re;
+            $('#Deny').click(function () {
+                var re=confirm("Are you sure you want to Reject?")
+                if(re)
+                {
+                var remarks=prompt("Please enter the remarks")
+                if(remarks == ""){
+                    alert("Entering remarks is mandatory")
+                    return false;
+                }
+                    $('#remarks').val(remarks)
+                    
+                }
+                   return re;
+                
+                
             });
         }
         );

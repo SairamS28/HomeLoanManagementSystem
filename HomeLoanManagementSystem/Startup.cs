@@ -51,7 +51,9 @@ namespace HomeLoanManagementSystem
 
                 options.Cookie.Name = "MyCookie1";
                 options.LoginPath = "/Admin/login";
-                options.SlidingExpiration = false;
+                options.Cookie.IsEssential = true;
+                //options.SlidingExpiration = true; // here 1
+                //options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
 
 
             });
