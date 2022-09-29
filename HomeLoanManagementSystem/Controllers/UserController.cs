@@ -22,10 +22,10 @@ namespace HomeLoanManagementSystem.Controllers
         
         private readonly IUserRepository _repo;
 
-        public UserController()
-        {
+        //public UserController()
+        //{
 
-        }
+        //}
         public UserController(IUserRepository repo)
         {
             _repo = repo;
