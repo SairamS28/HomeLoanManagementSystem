@@ -105,7 +105,8 @@ namespace HomeLoanManagementSystem.Repository.AdminRepo
 
         public IEnumerable<Loan> GetAllloans()
         {
-            return _context.Loans;
+            return _context.Loans.Include(x => x.application);
+
             
         }
     }

@@ -9,18 +9,22 @@
         justify-content:center
     }
     h1{
-        background-color: teal;
-
+        background-color: #1D809F;
+        color:mintcream;
+    }
+    input{
+        --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: 2rem;
     }
 </style>
 
 <form asp-action="Approve" asp-route-id=@Model.ApplicationId>
 
 
-<div>
+<div class="text-center">
     <h1>Application Details</h1>
-    
-    <dl class="row justify-content-center">
+</div>
+ <div>
+    <dl class="row justify-content-center" style="margin-left:42%;margin-top:1%; font-size:medium;font-weight:500">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PropertyType)
         </dt>
@@ -101,13 +105,14 @@
         </dd>
         
     </dl>
+    <div style="margin-left:45.5%;">
+        <input type="hidden" name="remarks" id="remarks" />
+        <input type="submit" id="Approve" value="Approve" name="Approve" class="btn btn-xl " />
+        <input type="submit" id="Deny" name="Deny" value="Reject" class="btn btn-xl " />
+    </div>
 </div>
 
- <div style="margin-left:40%;">
-        <input type="hidden" name="remarks" id="remarks" />
-        <input type="submit" id="Approve" value="Approve" name="Approve" class="btn btn-secondary btn-lg " />
-        <input type="submit" id="Deny" name="Deny" value="Reject" class="btn btn-secondary btn-lg " />
-    </div>
+ 
 
     
     <script src = "~/lib/jquery/dist/jquery.min.js"> </script>

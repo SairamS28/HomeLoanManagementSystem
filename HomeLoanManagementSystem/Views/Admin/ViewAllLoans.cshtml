@@ -4,14 +4,14 @@
     ViewData["Title"] = "ViewAllLoans";
 }
 
-<h1>ViewAllLoans</h1>
+<h1 style="margin-left:45%">View All Loans</h1>
 
-
-<table class="table">
-    <thead>
+<div style="width:85%; height:auto; margin:auto; align-items:center; margin-top:8%;" class="center vertical-scrollable">
+    <table class="table table-bordered table-definition mb-5 font-size-lg ">
+        <thead style=" background-color: #1D809F; text-decoration-color:white;">
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.LoanStatus)
+                @Html.DisplayNameFor(model => model.LoanNo)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ApprovedAmount)
@@ -23,16 +23,16 @@
                 @Html.DisplayNameFor(model => model.LoanEndDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.application)
+                @Html.DisplayNameFor(model => model.application.ApplicationId)
             </th>
-            <th></th>
+           
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.LoanStatus)
+                @Html.DisplayFor(modelItem => item.LoanNo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ApprovedAmount)
@@ -44,9 +44,10 @@
                 @Html.DisplayFor(modelItem => item.LoanEndDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.application.EmployeeType)
+                @Html.DisplayFor(modelItem => item.application.ApplicationId)
             </td>
         </tr>
 }
     </tbody>
 </table>
+</div>
