@@ -60,8 +60,8 @@ namespace HomeLoanManagementSystem
                });
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
-            });
-        }
+            }
+        
             // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
             public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
             {

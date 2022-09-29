@@ -11,7 +11,7 @@
         <div class="container px-4 px-lg-5 text-center">
             <h1 class="mb-2">Home Loan Management System</h1>
             <h3 class="mb-5"><em style="">A home for all</em></h3>
-            <a class="btn btn-primary btn-xl" href="#about">Find Out More</a>
+            <a class="btn btn-primary btn-xl" asp-action="dummyfaq" asp-controller="FAQ" asp-area="">Find Out More</a>
         </div>
     </header>
     <!-- Services-->
@@ -30,7 +30,7 @@
                 <div class="col-lg-3 col-md-6 mb-5 mb-lg-0">
                     <span class="service-icon rounded-circle mx-auto mb-3"><i class="icon-pencil"></i></span>
                     <h4><strong>Loan</strong></h4>
-                    <p class="text-faded mb-0"><a asp-action="CalculateEMI" asp-area="" asp-controller="Nonlogin" class="text-white nav-link">Loan Eligibilty</a></p>
+                    <p class="text-faded mb-0"><a asp-action="LoanEligibilityCalculator" asp-area="" asp-controller="Nonlogin" class="text-white nav-link">Loan Eligibilty</a></p>
                 </div>
             </div>
         </div>

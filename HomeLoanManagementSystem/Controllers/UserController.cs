@@ -25,8 +25,8 @@ namespace HomeLoanManagementSystem.Controllers
         //public UserController()
         //{
 
-        //}
-        public UserController(IUserRepository repo)
+        //    }
+            public UserController(IUserRepository repo)
         {
             _repo = repo;
         }
