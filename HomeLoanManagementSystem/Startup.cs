@@ -37,7 +37,8 @@ namespace HomeLoanManagementSystem
             services.AddScoped<IAdminRepository, AdminRepository>();
             services.AddDbContext<CodeFirstContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DbCon")));
 
-            services.AddSession(options => {
+            services.AddSession(options =>
+            {
                 options.IdleTimeout = TimeSpan.FromMinutes(15);
                 options.Cookie.IsEssential = true;
 
@@ -57,7 +58,7 @@ namespace HomeLoanManagementSystem
                 //options.ExpireTimeSpan = TimeSpan.FromMinutes(1);
 
 
-               });
+            });
             services.AddScoped<IFAQRepository, FAQRepository>();
             services.AddDbContext<CodeFirstContext>(option => option.UseSqlServer(Configuration.GetConnectionString("DbCon")));
             }
@@ -78,17 +79,18 @@ namespace HomeLoanManagementSystem
                 app.UseHttpsRedirection();
                 app.UseStaticFiles();
 
-                app.UseRouting();
-                app.UseAuthentication();
-                app.UseAuthorization();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-                app.UseSession();
-                app.UseEndpoints(endpoints =>
-                {
-                    endpoints.MapControllerRoute(
-                        name: "default",
-                        pattern: "{controller=Home}/{action=Index}/{id?}");
-                });
-            }
+            app.UseSession();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
+
     }
+}
