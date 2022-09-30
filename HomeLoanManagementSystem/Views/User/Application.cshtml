@@ -12,6 +12,12 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="d-flex flex-row align-items-center justify-content-center">
             <section class="w-50">
+
+            <div class="form-group">
+                <label asp-for="user.Name" class="control-label"></label>
+                <input asp-for="user.Name" value="@ViewBag.Name" readonly class="form-control" />
+                <span asp-validation-for="PropertyType" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Mobile" class="control-label"></label>
                 <input asp-for="Mobile" value="@ViewBag.Mobile" readonly class="form-control" />
@@ -45,7 +51,7 @@
             </div>
  
             </section>
-            <section class="w-50 ml-2">
+            <section class="w-50">
             <div class="form-group">
                 <label asp-for="LoanAmount" class="control-label"></label>
                 <input asp-for="LoanAmount" class="form-control" id="LoanAmt" readonly />
@@ -67,13 +73,14 @@
                 <span asp-validation-for="EMI" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input asp-for="ApplicationDate" class="form-control" style="display:none" />
-                <span asp-validation-for="ApplicationDate" class="text-danger"></span>
+                <input asp-for="ApplicationDate" class="form-control"/>
+                <span asp-validation-for="ApplicationDate" value=@DateTime.Now class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input asp-for="ApplicationStatus" class="form-control" style="display:none"/>
                 <span asp-validation-for="ApplicationStatus" class="text-danger"></span>
             </div>
+
             <div class="form-group">
             <label asp-for="PropertyAddress" class="control-label"></label>
             <input asp-for="PropertyAddress" class="form-control" />
@@ -112,7 +119,7 @@
             $('#ET').change(function(){
 
                 var res = $('#ET').val()
-                //alert(res)
+               // alert(res)
                 if (res =='Other') {
                     //alert('hi')
                     $('#EmployeeType').show();
@@ -120,17 +127,17 @@
                 }
                 else{
                     //$('#EmployeeType').show();
-                    $('#EmployeeType').val($('#ET').val()) 
+                    $('#EmployeeType').val(res)
                 }
             })
             $('#Tenure').change(function(){
-                var tenure = $('#Tenure').val();
-                var num1=(1+8.5)*tenure
-                var num2 = (1 + 8.5) * (tenure-1)
-                var res=($('#LoanAmt').val()*8.5*num1)/num2
-                //alert(num1);
+                var tenure = $('#Tenure').val()*12;
+                var emi = 0.00708
+                var num1=Math.pow((1+emi),tenure)
+                var num2 = Math.pow((1 + emi),tenure)-1
+                var res=($('#LoanAmt').val()*emi*num1)/(num2)
+               // alert(num1);
                 //alert(num2);
-                //alert(number);
                 //alert(res);
                 $('#EMI').val(res);
             })

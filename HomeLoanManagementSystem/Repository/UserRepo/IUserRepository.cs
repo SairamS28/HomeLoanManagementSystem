@@ -10,5 +10,6 @@ namespace HomeLoanManagementSystem.Repository.UserRepo
         public void Application(Application application);
         public  Task<User> Profile(long? id);
         public void UpdatePassword(long? id, User user);
+        public Task<Application> LoanStatus(long? id);
     }
 }

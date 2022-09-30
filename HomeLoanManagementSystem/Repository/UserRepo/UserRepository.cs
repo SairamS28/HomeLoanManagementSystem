@@ -63,5 +63,11 @@ namespace HomeLoanManagementSystem.Repository.UserRepo
                 throw e;
             }
         }
+
+        public async Task<Application> LoanStatus(long? id)
+        {
+            var appplication = await _context.Applications.FirstOrDefaultAsync(x => x.Mobile == id);
+            return appplication;
+        }
     }
 }

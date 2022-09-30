@@ -8,7 +8,7 @@ namespace HomeLoanManagementSystem.Controllers
 {
     public class NonLoginController : Controller
     {
-        private INonLoginRepository _context;
+        //private INonLoginRepository _context;
 
 
         public IActionResult Index2()
@@ -24,7 +24,7 @@ namespace HomeLoanManagementSystem.Controllers
         public IActionResult CalculateEMI(EMIModel emi)
         {
             float result = new float();
-            result = (emi.principal * (emi.rate)/100 * (float)Math.Pow(1 + (emi.rate)/100, emi.tenure)) / (float)(Math.Pow(1 + (emi.rate)/100, emi.tenure) - 1);
+            result = (emi.principal * (emi.rate)/100 * (float)Math.Pow(1 + (emi.rate)/100, emi.tenure*12)) / (float)(Math.Pow(1 + (emi.rate)/100, emi.tenure*12) - 1);
             ViewBag.result = result;    
             return View();
         }

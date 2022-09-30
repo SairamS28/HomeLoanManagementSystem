@@ -61,7 +61,6 @@ namespace HomeLoanManagementSystem.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult Register( User user)
         {
@@ -79,6 +78,7 @@ namespace HomeLoanManagementSystem.Controllers
             ViewBag.Property = new SelectList(new List<string>() { "Commercial", "Residential Apartment","Residential House" });
             ViewBag.Employee = new SelectList(new List<string>() { "Self-Employed","Goverment","Salaried","Other"});
             ViewBag.Mobile = HttpContext.Session.GetString("Mobile No");
+            ViewBag.Name = HttpContext.Session.GetString("Name");
             return View();
         }
         [HttpPost]
@@ -88,8 +88,11 @@ namespace HomeLoanManagementSystem.Controllers
             ViewBag.Property = new SelectList(new List<string>() { "Commercial", "Residential Apartment", "Residential House" });
             ViewBag.Employee = new SelectList(new List<string>() { "Self-Employed", "Goverment", "Salaried", "Other" });
             ViewBag.Mobile = HttpContext.Session.GetString("Mobile No");
+            ViewBag.Name = HttpContext.Session.GetString("Name");
             application.ApplicationDate = DateTime.Now;
             application.ApplicationStatus = "Pending";
+            Random r = new Random();
+            application.ApplicationId = r.Next(1000, 5000);
             if (ModelState.IsValid)
             {
                 _repo.Application(application);
@@ -175,6 +178,18 @@ namespace HomeLoanManagementSystem.Controllers
                 _repo.UpdatePassword(long.Parse(HttpContext.Session.GetString("Mobile No")), res);
             }
             return View();
+        }
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> LoanDetails()
+        {
+            var id = long.Parse(HttpContext.Session.GetString("Mobile No"));
+            var application =await _repo.LoanStatus(id);
+            if (application== null)
+            {
+                return NotFound();
+            }
+            return View(application);
         }
 
     }
